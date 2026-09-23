@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'customer_home_screen.dart';
+//import 'customer_home_screen.dart'; //unused as of the moment, but will be used in the future when the QR scanner is implemented
+
 import 'staff_login_screen.dart';
+import 'menu_screen.dart';
 
 class RoleSelectionScreen extends StatelessWidget {
   const RoleSelectionScreen({super.key});
@@ -36,14 +38,14 @@ class RoleSelectionScreen extends StatelessWidget {
               _RoleCard(
                 icon: Icons.restaurant,
                 title: 'Customer',
-                description: 'Scan your table QR code and place an order.',
+                description: 'Browse the menu and place an order.',
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const CustomerHomeScreen(),
-                    ),
-                  );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MenuScreen(),
+                  ),
+                );
                 },
               ),
 
