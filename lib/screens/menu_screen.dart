@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'cart_screen.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -414,14 +415,24 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(11),
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Cart screen will be connected next.',
+                    onTap: () async {
+                      final updatedCart = await Navigator.push<Map<String, int>>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CartScreen(
+                            menuItems: menuItems,
+                            cart: cart,
                           ),
                         ),
                       );
+
+                      if (updatedCart != null) {
+                        setState(() {
+                          cart
+                            ..clear()
+                            ..addAll(updatedCart);
+                        });
+                      }
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
